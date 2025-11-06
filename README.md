@@ -95,32 +95,19 @@ Now the text can be safely pasted into an AI tool without exposing personal emai
 
 ---
 
-## Customization
-
-If you prefer to **replace** email addresses with a placeholder rather than removing them completely, edit this line in the script:
-
-Change:
-```bash
-cleaned=$(echo "$text" | sed -E 's/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}//g')
-```
-
-To:
-```bash
-cleaned=$(echo "$text" | sed -E 's/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/[email removed]/g')
-```
-
----
-
 ## Alternative installation: add to your shell
 
 Instead of installing the script as an executable file, you can add the functionality directly to your shell configuration file (`~/.bashrc` or `~/.zshrc`) as a function.
 
 ### macOS example
 
-Add the following line to your `~/.zshrc` or `~/.bashrc`:
+Add the following lines to your `~/.zshrc` or `~/.bashrc`:
 
 ```bash
-clean-clipboard() { pbpaste | sed -E 's/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}//g' | pbcopy; echo "Emails removed."; }
+clean-clipboard() { 
+  pbpaste | sed -E 's/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}//g' | pbcopy
+  echo "Email addresses removed from clipboard."
+}
 ```
 
 Then reload your shell:
