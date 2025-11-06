@@ -4,6 +4,8 @@ A simple shell script that removes email addresses from your clipboard text.
 Run this before pasting email threads into AI tools such as ChatGPT so that you do not give away personal data.  
 Can be used on macOS or Linux.
 
+---
+
 ## Requirements
 
 You need one clipboard tool installed:
@@ -14,6 +16,8 @@ You need one clipboard tool installed:
 | **Linux (X11)** | `xclip` or `xsel` | `sudo apt install xclip` or `sudo apt install xsel` |
 | **Linux (Wayland)** | `wl-copy`, `wl-paste` | `sudo apt install wl-clipboard` |
 | **BSD** | `xclip` or `xsel` | via package manager |
+
+---
 
 ## Installation
 
@@ -26,6 +30,8 @@ sudo mv clean-clipboard.sh /usr/local/bin/clean-clipboard
 
 This makes the script available system-wide as the `clean-clipboard` command.
 
+---
+
 ## Usage
 
 1. Copy any text containing one or more email addresses.  
@@ -34,6 +40,8 @@ This makes the script available system-wide as the `clean-clipboard` command.
    clean-clipboard
    ```
 3. Paste — all email addresses will have been removed from the clipboard.
+
+---
 
 ## Example
 
@@ -85,6 +93,8 @@ On Tue, 4 Nov 2025 at 10:45, Bob Smith <> wrote:
 
 Now the text can be safely pasted into an AI tool without exposing personal email addresses.
 
+---
+
 ## Customization
 
 If you prefer to **replace** email addresses with a placeholder rather than removing them completely, edit this line in the script:
@@ -99,7 +109,9 @@ To:
 cleaned=$(echo "$text" | sed -E 's/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/[email removed]/g')
 ```
 
-## Alternative anstallation: add to your shell
+---
+
+## Alternative installation: add to your shell
 
 Instead of installing the script as an executable file, you can add the functionality directly to your shell configuration file (`~/.bashrc` or `~/.zshrc`) as a function.
 
@@ -124,6 +136,8 @@ clean-clipboard
 ```
 
 This will remove all email addresses from your clipboard text on macOS without requiring a separate script file.
+
+---
 
 ## License
 
