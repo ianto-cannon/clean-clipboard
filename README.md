@@ -43,15 +43,53 @@ This makes the script available system-wide as the `clean-clipboard` command.
 
 ## Example
 
-**Before:**
+### **Before running `remove-emails`:**
+
 ```
-Contact alice@example.com or support@company.org for help.
+From: Alice Johnson <alice.johnson@company.com>
+To: Bob Smith <bob.smith@org.net>
+Cc: Carol <carol_dev@startup.io>
+Subject: Re: Conference Planning
+
+Hi Bob,
+
+Thanks for the update! I’ve attached the draft agenda. Could you ask Carol to confirm the catering details with the venue?  
+I’ll follow up with the external speakers once we have the finalized schedule.
+
+Best,  
+Alice
+
+On Tue, 4 Nov 2025 at 10:45, Bob Smith <bob.smith@org.net> wrote:
+> Hi Alice,
+> Just confirming that the hotel booking is complete. Carol will handle the transport arrangements.
+> Best,
+> Bob
 ```
 
-**After:**
+### **After running `remove-emails`:**
+
 ```
-Contact  or  for help.
+From: Alice Johnson <>
+To: Bob Smith <>
+Cc: Carol <>
+Subject: Re: Conference Planning
+
+Hi Bob,
+
+Thanks for the update! I’ve attached the draft agenda. Could you ask Carol to confirm the catering details with the venue?  
+I’ll follow up with the external speakers once we have the finalized schedule.
+
+Best,  
+Alice
+
+On Tue, 4 Nov 2025 at 10:45, Bob Smith <> wrote:
+> Hi Alice,
+> Just confirming that the hotel booking is complete. Carol will handle the transport arrangements.
+> Best,
+> Bob
 ```
+
+Now the email can be safely pasted into an AI tool without exposing personal email addresses.
 
 ---
 
