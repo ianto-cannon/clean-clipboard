@@ -1,6 +1,8 @@
 # Remove Emails from Clipboard
 
-A lightweight shell script that removes all email addresses from your clipboard — useful for better privacy when pasting email threads into ChatGPT or other AI tools. Can be used on macOS or Linux.
+A simple shell script that removes email addresses from your clipboard text.  
+Run this before pasting email threads into AI tools such as ChatGPT so that you do not give away personal data.  
+Can be used on macOS or Linux.
 
 ---
 
@@ -89,7 +91,7 @@ On Tue, 4 Nov 2025 at 10:45, Bob Smith <> wrote:
 > Bob
 ```
 
-Now the email can be safely pasted into an AI tool without exposing personal email addresses.
+Now the text can be safely pasted into an AI tool without exposing personal email addresses.
 
 ---
 
