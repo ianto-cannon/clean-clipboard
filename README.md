@@ -1,4 +1,4 @@
-# Remove Emails from Clipboard
+# Remove emails from clipboard
 
 A simple shell script that removes email addresses from your clipboard text.  
 Run this before pasting email threads into AI tools such as ChatGPT so that you do not give away personal data.  
@@ -109,11 +109,11 @@ To:
 cleaned=$(echo "$text" | sed -E 's/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/[email removed]/g')
 ```
 
-## Alternative Installation: Add to Your Shell
+## Alternative anstallation: add to your shell
 
-Instead of installing the script as a standalone command, you can add the functionality directly to your shell configuration file (`~/.bashrc` or `~/.zshrc`) as a function.
+Instead of installing the script as an executable file, you can add the functionality directly to your shell configuration file (`~/.bashrc` or `~/.zshrc`) as a function.
 
-### macOS Example
+### macOS example
 
 Add the following line to your `~/.zshrc` or `~/.bashrc`:
 
