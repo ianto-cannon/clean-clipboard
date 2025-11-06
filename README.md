@@ -118,7 +118,7 @@ Instead of installing the script as a standalone command, you can add the functi
 Add the following line to your `~/.zshrc` or `~/.bashrc`:
 
 ```bash
-clean-clip() { pbpaste | sed -E 's/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}//g' | pbcopy; echo "Emails removed."; }
+clean-clipboard() { pbpaste | sed -E 's/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}//g' | pbcopy; echo "Emails removed."; }
 ```
 
 Then reload your shell:
