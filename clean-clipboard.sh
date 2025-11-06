@@ -1,7 +1,23 @@
 #!/bin/bash
 #
-# This script removes all email addresses from clipboard text.
-# Works on macOS and Linux (X11/Wayland).
+# remove-emails.sh — Remove email addresses from clipboard text (macOS or Linux)
+#
+# Description:
+#   This script scrubs all email addresses from your clipboard content and
+#   copies the cleaned text back to the clipboard. Useful before pasting
+#   email threads into AI tools (e.g., ChatGPT) to protect privacy.
+#
+# Usage:
+#   Run the script directly, or add it as a function in your ~/.bashrc or ~/.zshrc.
+#
+# Author: Ianto Cannon
+# Date: 2025
+# License: MIT
+# Repository: https://github.com/ianto-cannon/clean-clipboard
+#
+# Dependencies:
+#   macOS: pbpaste / pbcopy
+#   Linux: xclip, xsel or wl-copy / wl-clip
 #
 
 # --- Read clipboard content ---
