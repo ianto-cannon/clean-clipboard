@@ -45,7 +45,7 @@ This makes the script available system-wide as the `clean-clipboard` command.
 
 ## Example
 
-### **Before running `remove-emails`:**
+### **Before running `clean-clipboard`:**
 
 ```
 From: Alice Johnson <alice.johnson@company.com>
@@ -68,7 +68,7 @@ On Tue, 4 Nov 2025 at 10:45, Bob Smith <bob.smith@org.net> wrote:
 > Bob
 ```
 
-### **After running `remove-emails`:**
+### **After running `clean-clipboard`:**
 
 ```
 From: Alice Johnson <>
@@ -108,6 +108,32 @@ To:
 ```bash
 cleaned=$(echo "$text" | sed -E 's/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/[email removed]/g')
 ```
+
+## Alternative Installation: Add to Your Shell
+
+Instead of installing the script as a standalone command, you can add the functionality directly to your shell configuration file (`~/.bashrc` or `~/.zshrc`) as a function.
+
+### macOS Example
+
+Add the following line to your `~/.zshrc` or `~/.bashrc`:
+
+```bash
+clean-clip() { pbpaste | sed -E 's/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}//g' | pbcopy; echo "Emails removed."; }
+```
+
+Then reload your shell:
+
+```bash
+source ~/.zshrc   # or source ~/.bashrc
+```
+
+You can now run the command directly from your terminal:
+
+```bash
+clean-clipboard
+```
+
+This will remove all email addresses from your clipboard text on macOS without requiring a separate script file.
 
 ---
 
