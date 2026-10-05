@@ -1,47 +1,15 @@
-#!/bin/bash
-#
-# clean-clipboard.sh — Remove email addresses from clipboard text (macOS or Linux)
-#
-# Author: Ianto Cannon
-# Date: 2025
-# License: MIT
-# Repository: https://github.com/ianto-cannon/clean-clipboard
-#
-# Dependencies:
-#   macOS: pbcopy
-#   Linux: xclip, xsel or wl-copy
-#
-
-# --- Read clipboard content ---
-if command -v pbpaste &>/dev/null; then
-    text=$(pbpaste)
-elif command -v wl-paste &>/dev/null; then
-    text=$(wl-paste)
-elif command -v xclip &>/dev/null; then
-    text=$(xclip -selection clipboard -o)
-elif command -v xsel &>/dev/null; then
-    text=$(xsel --clipboard)
-else
-    echo "Error: No clipboard tool found. Install one of: pbpaste/pbcopy, wl-clipboard, xclip, or xsel."
-    exit 1
-fi
-
-# --- Remove email addresses using a regex ---
-cleaned=$(echo "$text" | sed -E 's/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}//g')
-
-# --- Copy cleaned text back to clipboard ---
-if command -v pbcopy &>/dev/null; then
-    echo "$cleaned" | pbcopy
-elif command -v wl-copy &>/dev/null; then
-    echo "$cleaned" | wl-copy
-elif command -v xclip &>/dev/null; then
-    echo "$cleaned" | xclip -selection clipboard
-elif command -v xsel &>/dev/null; then
-    echo "$cleaned" | xsel --clipboard
-else
-    echo "Error: No clipboard write tool found. Install one of: pbcopy, wl-copy, xclip, or xsel."
-    exit 1
-fi
-
-echo "Email addresses removed from clipboard."
-
+pbpaste | awk '
+{
+  while (match($0, /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}|https?:\/\/[^[:space:]]+|[A-Za-z0-9.-]+\.[A-Za-z]{2,}(\/[^[:space:]]*)?|[0-9]{5,}|[Pp][Aa][Ss][Ss].*/)) {
+    m = substr($0,RSTART,RLENGTH)
+    if (RLENGTH > 2) {
+      r = substr(m,1,1) sprintf("%*s", RLENGTH-2, "") substr(m,RLENGTH,1)
+      gsub(/ /, "X", r)
+    } else {
+      r = m
+    }
+    print "Removed:", m > "/dev/stderr"
+    $0 = substr($0,1,RSTART-1) r substr($0,RSTART+RLENGTH)
+  }
+  print
+}' | pbcopy
